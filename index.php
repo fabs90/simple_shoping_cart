@@ -1,6 +1,8 @@
 <?php
 require 'connection.php';
-session_start();
+// Karena di validation udah ada session jadi gosah start lg di halaman ini
+// Cukup sambungin file yg udah ada session_start();
+require 'validation.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,7 +40,7 @@ session_start();
 <div class='col-md-11 text-center'>
   <div class='row'>
 
-  <!-- Show Data -->
+  <!-- Menampilkan Data Barang dari DB -->
 <?php
 $query = "SELECT * FROM tbl_product";
 
@@ -96,35 +98,3 @@ while ($row = mysqli_fetch_array($result)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   </body>
 </html>
-<?php
-if (isset($_POST["kirim"])) {
-    // Ambil data dari inputan user
-    $id = $_GET["id"];
-    $nama = $_POST["nama"];
-    $harga = number_format($_POST["harga"], 2);
-    $jumlah_barang = $_POST["jumlah_barang"];
-
-    // Kalau blom ada array session_cart, buat
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'][] = array(
-            'id' => $id,
-            'nama' => $nama,
-            'harga' => $harga,
-            'jumlah_barang' => $jumlah_barang,
-        );
-    } else {
-        // Ambil semua ID saja dari array session_cart
-        $SESSION_CART_ID = array_column($_SESSION['cart'], 'id');
-        // Kalo id nya gaada di array, masukin ke array
-        if (!in_array($id, $SESSION_CART_ID)) {
-            $_SESSION['cart'][] = array(
-                'id' => $id,
-                'nama' => $nama,
-                'harga' => $harga,
-                'jumlah_barang' => $jumlah_barang,
-            );
-        }
-    }
-
-}
-?>
