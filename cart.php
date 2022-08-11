@@ -36,8 +36,37 @@ require 'validation.php';
     </nav>
 
   <!-- Tampil cart -->
-  <div class="col-md-11 text-center">
+  <div class="col-md-12 text-center ">
     <h2 class="text-center">CART</h2>
+
+<?php
+// Cek apakah dari file validasi terdapat error
+if (count($errors) > 0) {
+    ?>
+                        <div class="alert alert-danger text-center">
+                            <?php
+// Jika ada error tampilan error
+    foreach ($errors as $showerror) {
+        echo $showerror;
+    }
+    ?>
+                        </div>
+                        <?php
+} elseif (count($success) > 0) {
+    ?>
+
+        <div class="alert alert-success text-center">
+                            <?php
+// Jika success tampilkan success
+    foreach ($success as $showsuccess) {
+        echo $showsuccess;
+    }
+    ?>
+                        </div>
+
+<?php
+}
+?>
 
     <?php
 // Deklrasi variabel total = 0
