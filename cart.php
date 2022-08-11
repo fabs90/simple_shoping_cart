@@ -1,6 +1,6 @@
 <?php
 require 'connection.php';
-session_start();
+require 'validation.php';
 ?>
 
 <!doctype html>
@@ -42,6 +42,7 @@ session_start();
     <?php
 // Deklrasi variabel total = 0
 $total = 0;
+$no = 1;
 
 $output = "";
 
@@ -49,7 +50,7 @@ $output .= "
     <table class='table table-bordered  table-striped'>
     <thead class='table-dark'>
     <tr>
-        <th>ID</th>
+        <th>NO</th>
         <th>Item Name</th>
         <th>Item Price</th>
         <th>Item Quantity</th>
@@ -65,22 +66,26 @@ if (!empty($_SESSION["cart"])) {
         // Concat string  variabel output supaya table bisa kebawah
         $output .= "
         <tr>
-            <td>" . $key['id'] . "</td>
+            <td>" . $no . "</td>
             <td>" . $key['nama'] . "</td>
             <td>" . $key['harga'] . "</td>
             <td>" . $key['jumlah_barang'] . "</td>
             <td>" . number_format($key['jumlah_barang'] * $key['harga'], 2) . "</td>
             <td>
-                <a href='index.php?action=remove&id=" . $key['id'] . "'>
+                <a href='cart.php?action=remove&id=" . $key['id'] . "'>
                 <button class='btn btn-danger btn-block'>Remove</button>
                 </a>
             </td>
         </tr>
         ";
 
+        // Menghitung jumlah total
         $total += $key['jumlah_barang'] * $key['harga'];
+        // Auto increment +1
+        $no++;
     }
 
+    // Output Menampilkan Total Harga
     $output .= "
     <tr>
         <td colspan='3'></td>
