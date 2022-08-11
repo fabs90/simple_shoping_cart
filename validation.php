@@ -1,7 +1,9 @@
 <?php
 session_start();
 $success = array();
-// Jika tombol add to cart diklik
+$errors = array();
+
+// (Add To Cart)
 if (isset($_POST["kirim"])) {
     // Ambil data dari inputan user
     $id = $_GET["id"];
@@ -43,6 +45,7 @@ if (isset($_GET["action"])) {
             if ($value['id'] == $id) {
                 // Menghapus dgn cara unset key yg sesuai sama id
                 unset($_SESSION['cart'][$key]);
+                $success['delete'] = "Sucessfully Delete";
             }
         }
     }
