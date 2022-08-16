@@ -2,6 +2,8 @@
 require 'connection.php';
 // Karena di validation udah ada session jadi gosah start lg di halaman ini
 // Cukup sambungin file yg udah ada session_start();
+// Sambungkan dengan file validation
+// Sehingga variabel2 di index bisa dipake di validation
 require 'validation.php';
 ?>
 <!doctype html>
@@ -55,7 +57,7 @@ while ($row = mysqli_fetch_array($result)) {
     <h5 class="text-center"><?=$row['name']?></h5>
     <h5 class="text-center">$<?=number_format($row['price'], 2)?></h5>
 
-    <!-- Mengambil Data dari form dari textbox input dan button submit -->
+    <!-- Mengambil Data Spesifik suatu barang kemudian dikirim ke input hidden -->
     <input type="hidden" name="nama" value="<?=$row['name']?>" >
     <input type="hidden" name="harga" value="<?=$row['price']?>" >
     <input type="number" name="jumlah_barang" value="1" class="form-control">
