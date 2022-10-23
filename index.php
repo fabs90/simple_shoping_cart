@@ -75,16 +75,16 @@ while ($row = mysqli_fetch_array($result)) {
 <!-- About -->
 <section id="About">
       <div class="container">
-        <div class="row text-center mb-3">
-          <div class="col">
+        <div class="row text-center mb-3 mt-5">
+          <div class="col-12">
             <h2>About Us</h2>
           </div>
         </div>
         <div class="row justify-content-center fs-5 text-center">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <p>Ultramarket adalah e-commerce ter depan dalam menyebarkan produk dalam negeri agar tidak kalah dengan produk negara lain  </p>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <p>Dibuat dengan design2 kece oleh designer lokal kita yg gaakan kalah saing sama produk luar bro...</p>
           </div>
         </div>
